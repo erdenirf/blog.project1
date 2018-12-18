@@ -56,8 +56,13 @@ if (strtolower($get_sucure_array['page']) == 'registry') {
                     include("View/registry_success.php");
                     echo $subject . $message;
                 }
-                else {
+                elseif ($returnCode == RegistryStatus::FAIL_LOGIN_DUPLICATE) {
                     include("View/registry_failed.php");
+                    echo "<p>Login is registered yet. Try another login.</p>";
+                }
+                elseif ($returnCode == RegistryStatus::FAIL_EMAIL_DUPLICATE) {
+                    include("View/registry_failed.php");
+                    echo "<p>E-mail is busy yet. Try another e-mail address.</p>";
                 }
 
             }

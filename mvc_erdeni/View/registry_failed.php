@@ -29,7 +29,6 @@
 </div>
 
 <p>Error. User's registration is failed.</p>
-<p>Your account has been activated automatically. Next time you need click link from your e-mail.</p>
 
 </body>
 
