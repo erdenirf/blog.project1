@@ -10,7 +10,8 @@ use mvc_erdeni\Controller\{
     Authorization,
     AuthStatus,
     Registration,
-    RegistryStatus
+    RegistryStatus,
+    Post
 };
 
 $post_secure_array = array_map ( 'htmlspecialchars' , $_POST );
@@ -114,14 +115,28 @@ elseif (strtolower($get_sucure_array['page']) == 'confirm_email') {
 
 elseif (strtolower($get_sucure_array['page']) == 'addpost') {
 
-    if (!$authorization->IsSessionAuthorized()) {
+    if (!$authorization->IsSessionAuthorized()) { // если не авторизован, то перенаправить на логин
 
         include ("View/login.php");
         exit;
 
     }
-    // если пользователь залогинен, тогда выполняется код ниже
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') {  // если не POST-запрос, тогда перенаправить на страницу с формой
+        include ("View/cabinet_addpost.php");
+        exit;
+    }
+    // если пришли данные с POST-запросом, тогда выполняется код ниже
+    $post_subject = $post_secure_array['post_subject'];
+    $post_body = $post_secure_array['post_body'];
+    $poster = new Post($post_subject, $post_body);
+    $return = $poster->save();
     include ("View/cabinet_addpost.php");
+    if ($return) {
+        echo "Congratulations. Your post is added to database successfully.";
+    }
+    else {
+        echo "Error. Your post is not added.";
+    }
 
 }
 
