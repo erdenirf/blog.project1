@@ -112,6 +112,19 @@ elseif (strtolower($get_sucure_array['page']) == 'confirm_email') {
 
 }
 
+elseif (strtolower($get_sucure_array['page']) == 'addpost') {
+
+    if (!$authorization->IsSessionAuthorized()) {
+
+        include ("View/login.php");
+        exit;
+
+    }
+    // если пользователь залогинен, тогда выполняется код ниже
+    include ("View/cabinet_addpost.php");
+
+}
+
 else {      /* index.php Главная страница */
 
     if (!$authorization->IsSessionAuthorized()) {
