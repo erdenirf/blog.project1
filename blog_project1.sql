@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 18, 2018 at 07:56 AM
+-- Generation Time: Dec 18, 2018 at 09:51 AM
 -- Server version: 10.2.19-MariaDB-10.2.19+maria~xenial-log
 -- PHP Version: 7.2.13-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -43,7 +43,10 @@ INSERT INTO `confirm_emails` (`id`, `token`, `email`, `date_expires`) VALUES
 (15, '$2y$10$dn2ItwzlZA4raz4NQqCdHeU58.C1klNs38B1e.deSwF5O8/5aI276', 'erdenirf@gmail.com', '2018-12-18 13:20:23'),
 (16, '$2y$10$VV5V5odc38qKdH.rXVtJKevHjl.lWZ9zRoZuNRU/nqPcGin2sQ7cy', 'erdenirf@gmail.com', '2018-12-18 13:23:21'),
 (17, '$2y$10$fVXG.bGZog3iMTJnrhuGYO8bc2BGtt9lMg254pGum3EsqKt.J8G.q', 'jest@test.ru', '2018-12-18 13:24:47'),
-(18, '$2y$10$aW5E5THX/Mb9HUyq0pT17.igQ/USIR73s0j6f4Hn3s9Ew/I5BJYfm', 'kk@mail.ru', '2018-12-18 13:27:16');
+(18, '$2y$10$aW5E5THX/Mb9HUyq0pT17.igQ/USIR73s0j6f4Hn3s9Ew/I5BJYfm', 'kk@mail.ru', '2018-12-18 13:27:16'),
+(19, '$2y$10$lZj.gKPxLZXBrBLdGTS45OnuctnplT0vHZ55DD0q3.5MLpz4808Vu', 'dwaf@mail.ru', '2018-12-19 09:13:52'),
+(20, '$2y$10$dTIUY8OFO3zaVPiVKpORwuJpfaYgaWJn44IZTCkuWgxmdgnOPjYt.', 'dj@mail.ru', '2018-12-19 09:40:37'),
+(21, '$2y$10$qjXGua7ob0QfSIEyd4XbZe0ObvkxDCGlfyFiPJf3jf4NrnvmlUADi', 'hh@mail.ru', '2018-12-19 09:45:09');
 
 -- --------------------------------------------------------
 
@@ -85,7 +88,12 @@ INSERT INTO `users` (`id`, `login`, `email`, `password`, `first_name`, `last_nam
 (39, 'dog', 'dog@mail.ru', '$2y$10$s.3qmEUKpTV6YLs9lunkvO89niTVOwwbtIVFaife9MoZnom6J6gka', 'dj', 'dj', '2018-12-17 11:44:03', '2018-12-17 11:44:03', 1),
 (41, 'erdenirf', 'erdenirf@gmail.com', '$2y$10$8EOweMgNonEImrOwOr0H6udyVSkxn8MmAM8BAj6ZJuwJnSlDs1Qhm', 'dj', 'dj', '2018-12-17 13:23:21', '2018-12-17 13:23:21', 0),
 (42, 'jest', 'jest@test.ru', '$2y$10$8RWXjxdbClWbHhyP4nQ4Bur3lb7XNnvSfTifx6AJQ0LVIHoF.klBy', 'dj', 'dj', '2018-12-17 13:24:47', '2018-12-17 13:24:47', 0),
-(43, 'kk', 'kk@mail.ru', '$2y$10$x67CmSMx68XrCKagO8XMfeEt9nFQ62f421cCifNszNGsjfCUfIovW', 'kk', 'kk', '2018-12-17 13:27:16', '2018-12-17 13:27:16', 1);
+(43, 'kk', 'kk@mail.ru', '$2y$10$x67CmSMx68XrCKagO8XMfeEt9nFQ62f421cCifNszNGsjfCUfIovW', 'kk', 'kk', '2018-12-17 13:27:16', '2018-12-17 13:27:16', 1),
+(44, 'dd', 'dwaf@mail.ru', '$2y$10$DDCHIqplhOSJj2hSrzNSUeqQQnSR9DXWJFw7AUPDNAr.WM6/AQNza', 'djk', 'dd', '2018-12-18 09:13:52', '2018-12-18 09:13:52', 1),
+(45, 'dj', 'dj@mail.ru', '$2y$10$03H9TJpfN3OdfFmQf7VrYOc3KNciVL9tOsSI7SVOAhzPkyhm8ExBS', 'dj', 'dj', '2018-12-18 09:40:37', '2018-12-18 09:40:37', 1),
+(46, 'hh', 'hh@mail.ru', '$2y$10$G6nYMcG6h0cpjGx4x5e7fu6Fb46fraUawEY0/DbbkvfTDx9ysqqRG', 'hh', 'hh', '2018-12-18 09:45:09', '2018-12-18 09:45:09', 1),
+(47, 'hh1', 'hh1@mail.ru', '$2y$10$hU/48uvdnP.f5YtnC..6BuMfPx3uDKLkr57vTORZ3boxiVVagOcD6', 'dj', 'dj', '2018-12-18 09:47:49', '2018-12-18 09:47:49', 1),
+(48, 'gg', 'gg@mail.ru', '$2y$10$RudPZg5KXwfLHJhgSLl3julQisDnPFcYxWli9bK75aefzJNhbH1.y', 'gg', 'gg', '2018-12-18 09:50:47', '2018-12-18 09:50:47', 1);
 
 --
 -- AUTO_INCREMENT for dumped tables

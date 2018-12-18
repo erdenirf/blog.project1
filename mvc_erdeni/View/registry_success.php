@@ -29,7 +29,7 @@
 </div>
 
     <p>200. User's registration is successful.</p>
-    <p>Your account has been activated automatically. Next time you need click link from your e-mail.</p>
+    <p>&nbsp;</p>
 
 </body>
 

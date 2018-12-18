@@ -39,7 +39,7 @@ if (strtolower($get_sucure_array['page']) == 'registry') {
                     $token = $registration->getLastSuccessRegisterUserToke();
 
                     //Составляем заголовок письма
-                    $subject = "Подтверждение почты на сайте ".$_SERVER['HTTP_HOST'];
+                    $subject = "Подтверждение почты на сайте ".$_SERVER['HTTP_HOST']."<br/>";
 
                     $email_admin = "admin@blog.project1";
 

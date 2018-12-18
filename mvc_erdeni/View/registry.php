@@ -29,7 +29,7 @@
     <p>Put your personal data below to registry new account.</p>
     <p>&nbsp;</p>
 </div>
-<form id="data" onsubmit="return passwordValidation()" method="post">
+<form id="data" action="/index.php?page=registry" onsubmit="return passwordValidation()" method="post">
     <p>Login<span>*</span>:</p>
     <p><input type="text" placeholder="login" name="reg_login" form="data" required></p>
     <p>E-mail<span>*</span>:</p>

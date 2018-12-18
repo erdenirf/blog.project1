@@ -28,7 +28,7 @@
     <p>Put your login and password below to log on.</p>
     <p>&nbsp;</p>
 </div>
-<form id="data" method="post" >
+<form id="data" action="/" method="post" >
     <p>Your login:</p>
     <p><input type="text" placeholder="login" name="username" form="data"></p>
     <p>Your password:</p>

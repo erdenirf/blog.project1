@@ -94,6 +94,7 @@ class Registration
                 $email = '"'.$fetchResult['email'].'"';
                 $result = $pdo->exec("UPDATE users SET email_confirmed=1 WHERE email = ".$email);
                 if ($result > 0) {
+                    $second = $pdo->exec("DELETE FROM `confirm_emails` WHERE `confirm_emails`.`email` = ".$email);
                     return true;
                 }
             }
