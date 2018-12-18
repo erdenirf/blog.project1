@@ -128,7 +128,7 @@ elseif (strtolower($get_sucure_array['page']) == 'addpost') {
     // если пришли данные с POST-запросом, тогда выполняется код ниже
     $post_subject = $post_secure_array['post_subject'];
     $post_body = $post_secure_array['post_body'];
-    $poster = new Post($post_subject, $post_body);
+    $poster = Post::setter($post_subject, $post_body);
     $return = $poster->save();
     include ("View/cabinet_addpost.php");
     if ($return) {
@@ -176,6 +176,11 @@ else {      /* index.php Главная страница */
     else {      /* Если авторизован как пользователь */
 
         include("View/cabinet.php");
+        foreach (Post::AllPosts() as $postEach) {
+            echo "<div><p>".$postEach->subject."</p>"
+                .htmlspecialchars_decode($postEach->body)."</div>";
+            echo "<p>-----------------------</p>";
+        }
 
     }
 

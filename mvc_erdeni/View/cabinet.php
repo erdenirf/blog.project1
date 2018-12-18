@@ -26,10 +26,9 @@
 </div>
 <div>
     <h2>Home of personal cabinet</h2>
-    <p>You are welcome, logged user :)</p>
-    <p>Your name is <strong><?=$_SESSION['login'];?></strong></p>
-
+    <p>You are welcome, logged user: <strong><?=$_SESSION['login'];?></strong></p>
     <p>&nbsp;</p>
+
 </div>
 </body>
 

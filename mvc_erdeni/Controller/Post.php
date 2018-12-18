@@ -14,11 +14,12 @@ class Post
 {
 
     private $id = null;
-    private $saved_subject = null;
-    private $saved_body = null;
+    private $date_create = null;
+    private $login = null;
 
     public $subject = null;
     public $body = null;
+
 
     public function __construct() {
         // allocate your stuff
@@ -36,13 +37,28 @@ class Post
     public static function loadById($id) {
         $instance = new self();
         $pdo = new PdoQuery();
-        $query = "SELECT header, body FROM posts WHERE id = :id";
+        $query = "SELECT * FROM posts WHERE id = :id";
         $params = array (":id" => $id);
         $result = $pdo->fetch($query, $params);
         $instance->subject = $result['header'];
         $instance->body = $result['body'];
         $instance->id = $id;
+        $instance->date_create = $result['time_created'];
+        $instance->login = $result['login_author'];
         return $instance;
+    }
+
+    public static function AllPosts() {
+
+        $pdo = new PdoQuery();
+        $query = "SELECT id FROM `posts` ORDER BY time_created DESC";
+        $params = array();
+        $fetchAll = $pdo->fetchAll($query, $params);
+        foreach ($fetchAll as $row) {
+            $containerPosts[] = Post::loadById($row['id']);
+        }
+        return $containerPosts;
+
     }
 
 
@@ -57,19 +73,20 @@ class Post
         ));
         if ($lastId > 0) {
             $this->id = $lastId;
-            $this->saved_subject = $this->subject;
-            $this->saved_body = $this->body;
             return true;
         }
         return false;
 
     }
 
-    public function backupFromSaved() {
-
-        $this->subject = $this->saved_subject;
-        $this->body = $this->saved_body;
-
+    public function getId() {
+        return $this->id;
+    }
+    public function getDateCreate() {
+        return $this->date_create;
+    }
+    public function getLogin() {
+        return $this->login;
     }
 
 }
