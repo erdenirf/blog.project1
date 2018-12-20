@@ -20,5 +20,6 @@ require_once($root . 'mvc_erdeni/Controller/Authorization.php');
 require_once($root . 'mvc_erdeni/Controller/RegistryStatus.php');
 require_once($root . 'mvc_erdeni/Controller/Registration.php');
 require_once($root . 'mvc_erdeni/Controller/Post.php');
+require_once($root . 'mvc_erdeni/Controller/User.php');
 require_once($root . 'mvc_erdeni/route.php');
 

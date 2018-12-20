@@ -13,6 +13,6 @@
     <a href="/">Home</a>
     <a href="index.php?page=addpost">Add post</a>
     <a href="index.php?page=userposts&user=<?=$_SESSION['login'];?>">My posts</a>
-    <a href="/">My profile</a>
+    <a href="index.php?page=profile&user=<?=$_SESSION['login'];?>">My profile</a>
     <a href="index.php?page=logout">Logout</a>
 </div>

@@ -29,7 +29,8 @@ include("_cabinet_topmenu.php");   // меню внутри кабинета
     echo "<h2>".$element->subject."</h2>";
     echo "<p>------- </p>";
     echo "<div>".htmlspecialchars_decode($element->body)."</div>";
-    echo "<p>------- Date create: ".$element->getDateCreate()." ----- User: ".$element->getFullUserName()."</p>";
+    $user = $element->getLogin();
+    echo "<p>------- Date create: ".$element->getDateCreate()." ----- User: <a href='index.php?page=profile&user=$user'>".$element->getFullUserName()."</a></p>";
     ?>
 
 </div>

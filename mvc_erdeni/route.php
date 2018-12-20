@@ -110,6 +110,10 @@ elseif (strtolower($get_secure_array['page']) == 'confirm_email') {
         }
 
     }
+    else {
+        header('Location: index.php');
+        exit;
+    }
 
 }
 
@@ -161,6 +165,18 @@ elseif (strtolower($get_secure_array['page']) == 'userposts') {
 
     }
     include("View/cabinet_userposts.php");
+
+}
+
+elseif (strtolower($get_secure_array['page']) == 'profile') {
+
+    if (!$authorization->IsSessionAuthorized()) { // если не авторизован, то перенаправить на логин
+
+        include ("View/login.php");
+        exit;
+
+    }
+    include("View/cabinet_profile.php");
 
 }
 

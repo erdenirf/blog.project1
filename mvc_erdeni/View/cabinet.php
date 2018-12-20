@@ -32,7 +32,7 @@ use mvc_erdeni\Controller\Post;
         echo "<div><p><a href=\"/index.php?page=fullpost&id=$id\">".$element->subject."</a>
 </p>".htmlspecialchars_decode($element->body)."</div>";
         $login = $element->getLogin();
-        echo "<p>------- Date create: ".$element->getDateCreate()." ----- User: <a href=\"index.php?page=userposts&user=$login\">".$element->getFullUserName()."</p>";
+        echo "<p>------- Date create: ".$element->getDateCreate()." ----- User: <a href=\"index.php?page=profile&user=$login\">".$element->getFullUserName()."</p>";
     }
     ?>
 </div>
