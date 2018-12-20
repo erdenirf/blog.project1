@@ -19,13 +19,9 @@
 
 </head>
 <body>
-<div>
-    <a href="/">Home</a>
-    <a href="index.php?page=addpost">Add post</a>
-    <a href="/">My posts</a>
-    <a href="/">My profile</a>
-    <a href="index.php?page=logout">Logout</a>
-</div>
+<?php
+include("_cabinet_topmenu.php");   // меню внутри кабинета
+?>
 
     <h2>Add new post from user</h2>
 

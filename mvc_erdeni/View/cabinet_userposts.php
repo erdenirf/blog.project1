@@ -23,18 +23,18 @@ use mvc_erdeni\Controller\Post;
     include("_cabinet_topmenu.php");   // меню внутри кабинета
 ?>
 <div>
-    <h2>Home of personal cabinet</h2>
     <p>You are welcome, logged user: <strong><?=$_SESSION['login'];?></strong></p>
-    <p>&nbsp;</p>
+    <h2>All posts from the user</h2>
     <?php
-    foreach (Post::AllPosts() as $element) {
+    $user = $get_secure_array['user'];
+    foreach (Post::allPostsOfUser($user) as $element) {
         $id = $element->getId();
         echo "<div><p><a href=\"/index.php?page=fullpost&id=$id\">".$element->subject."</a>
 </p>".htmlspecialchars_decode($element->body)."</div>";
-        $login = $element->getLogin();
-        echo "<p>------- Date create: ".$element->getDateCreate()." ----- User: <a href=\"index.php?page=userposts&user=$login\">".$element->getFullUserName()."</p>";
+        echo "<p>------- Date create: ".$element->getDateCreate()." ----- User: ".$element->getFullUserName()."</p>";
     }
     ?>
+
 </div>
 </body>
 

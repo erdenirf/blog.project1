@@ -15,10 +15,10 @@ use mvc_erdeni\Controller\{
 };
 
 $post_secure_array = array_map ( 'htmlspecialchars' , $_POST );
-$get_sucure_array = array_map ('htmlspecialchars', $_GET);
+$get_secure_array = array_map ('htmlspecialchars', $_GET);
 $authorization = new Authorization();
 
-if (strtolower($get_sucure_array['page']) == 'registry') {
+if (strtolower($get_secure_array['page']) == 'registry') {
 
     if (!$authorization->IsSessionAuthorized()) {
 
@@ -86,7 +86,7 @@ if (strtolower($get_sucure_array['page']) == 'registry') {
 
 }
 
-elseif (strtolower($get_sucure_array['page']) == 'logout') {
+elseif (strtolower($get_secure_array['page']) == 'logout') {
 
     $authorization->Logout();
     header('Location: index.php');
@@ -94,11 +94,11 @@ elseif (strtolower($get_sucure_array['page']) == 'logout') {
 
 }
 
-elseif (strtolower($get_sucure_array['page']) == 'confirm_email') {
+elseif (strtolower($get_secure_array['page']) == 'confirm_email') {
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-        $token = $get_sucure_array['token'];
+        $token = $get_secure_array['token'];
         $registration = new Registration();
         $return = $registration->ConfirmEmail($token);
         include("View/login.php");
@@ -113,7 +113,7 @@ elseif (strtolower($get_sucure_array['page']) == 'confirm_email') {
 
 }
 
-elseif (strtolower($get_sucure_array['page']) == 'addpost') {
+elseif (strtolower($get_secure_array['page']) == 'addpost') {
 
     if (!$authorization->IsSessionAuthorized()) { // если не авторизован, то перенаправить на логин
 
@@ -137,6 +137,30 @@ elseif (strtolower($get_sucure_array['page']) == 'addpost') {
     else {
         echo "Error. Your post is not added.";
     }
+
+}
+
+elseif (strtolower($get_secure_array['page']) == 'fullpost') {
+
+    if (!$authorization->IsSessionAuthorized()) { // если не авторизован, то перенаправить на логин
+
+        include ("View/login.php");
+        exit;
+
+    }
+    include("View/cabinet_fullpost.php");
+
+}
+
+elseif (strtolower($get_secure_array['page']) == 'userposts') {
+
+    if (!$authorization->IsSessionAuthorized()) { // если не авторизован, то перенаправить на логин
+
+        include ("View/login.php");
+        exit;
+
+    }
+    include("View/cabinet_userposts.php");
 
 }
 
@@ -176,11 +200,6 @@ else {      /* index.php Главная страница */
     else {      /* Если авторизован как пользователь */
 
         include("View/cabinet.php");
-        foreach (Post::AllPosts() as $postEach) {
-            echo "<div><p>".$postEach->subject."</p>"
-                .htmlspecialchars_decode($postEach->body)."</div>";
-            echo "<p>-----------------------</p>";
-        }
 
     }
 
