@@ -144,6 +144,30 @@ elseif (strtolower($get_secure_array['page']) == 'addpost') {
 
 }
 
+elseif (strtolower($get_secure_array['page']) == 'editpost') {
+
+    if (!$authorization->IsSessionAuthorized()) { // если не авторизован, то перенаправить на логин
+
+        include ("View/login.php");
+        exit;
+
+    }
+
+    $id = $get_secure_array['id'];
+    $element = Post::loadById($id);
+
+    if ($element->getLogin() != $_SESSION['login']) {
+        header($_SERVER["SERVER_PROTOCOL"]." 403 Access was denied");
+        exit;
+    }
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') {  // если не POST-запрос, тогда перенаправить на страницу с формой
+        include ("View/cabinet_edit_post.php");
+        exit;
+    }
+    include("View/cabinet_edit_post.php");
+
+}
+
 elseif (strtolower($get_secure_array['page']) == 'fullpost') {
 
     if (!$authorization->IsSessionAuthorized()) { // если не авторизован, то перенаправить на логин
@@ -155,6 +179,7 @@ elseif (strtolower($get_secure_array['page']) == 'fullpost') {
     include("View/cabinet_fullpost.php");
 
 }
+
 
 elseif (strtolower($get_secure_array['page']) == 'userposts') {
 

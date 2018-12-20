@@ -26,6 +26,8 @@ class Post
     public $subject = null;
     public $body = null;
 
+    const SUBJECT_MAX_LENGTH = 50;
+
     public function __construct() {
         // allocate your stuff
     }
@@ -84,15 +86,25 @@ class Post
     public function save() : bool {
 
         $pdo = new PdoQuery();
-        $lastId = $pdo->insert("posts", array(
-            "header" => $this->subject,
-            "body" => $this->body,
-            "login_author" => $_SESSION['login'],
-            'time_created' => date('Y-m-d G:i:s')
-        ));
-        if ($lastId > 0) {
-            $this->id = $lastId;
-            return true;
+        $header = substr($this->subject, 0, self::SUBJECT_MAX_LENGTH);
+        if (!$this->id) {       //если нет, такого поста в базе данных
+
+            $lastId = $pdo->insert("posts", array(
+                "header" => $header,
+                "body" => $this->body,
+                "login_author" => $_SESSION['login'],
+                'time_created' => date('Y-m-d G:i:s')
+            ));
+            if ($lastId > 0) {
+                $this->id = $lastId;
+                return true;
+            }
+        }
+        else {
+            $result = $pdo->exec("UPDATE posts SET header=".$header.",body=".$this->body." WHERE id = ".$this->id);
+            if ($result > 0) {
+                return true;
+            }
         }
         return false;
 
