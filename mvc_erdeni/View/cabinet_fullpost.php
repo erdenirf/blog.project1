@@ -27,6 +27,9 @@ include("_cabinet_topmenu.php");   // меню внутри кабинета
     $id = $get_secure_array['id'];
     $element = Post::loadById($id);
     echo "<h2>".$element->subject."</h2>";
+    if ($element->getLogin() == $_SESSION['login']) {
+        echo "<a href='index.php?page=editpost&id=$id'>[ Edit ]</a>";
+    }
     echo "<p>------- </p>";
     echo "<div>".htmlspecialchars_decode($element->body)."</div>";
     $user = $element->getLogin();

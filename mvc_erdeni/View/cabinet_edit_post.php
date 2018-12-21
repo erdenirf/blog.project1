@@ -8,6 +8,14 @@
 
 use mvc_erdeni\Controller\Post;
 
+    $id = $get_secure_array['id'];
+    $element = Post::loadById($id);
+
+    if ($element->getLogin() != $_SESSION['login']) {   //если автор поста не ты, то ошибка доступа
+        header($_SERVER["SERVER_PROTOCOL"]." 403 Access was denied");
+        exit;
+    }
+
 ?>
 
 <!DOCTYPE html>
