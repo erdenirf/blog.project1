@@ -123,7 +123,6 @@ elseif (strtolower($get_secure_array['page']) == 'addpost') {
 
         include ("View/login.php");
         exit;
-
     }
     if ($_SERVER['REQUEST_METHOD'] != 'POST') {  // если не POST-запрос, тогда перенаправить на страницу с формой
         include ("View/cabinet_addpost.php");
@@ -156,7 +155,23 @@ elseif (strtolower($get_secure_array['page']) == 'editpost') {
         include ("View/cabinet_edit_post.php");
         exit;
     }
-    include("View/cabinet_edit_post.php");
+    // если пришли данные с POST-запросом, тогда выполняется код ниже
+    $post_subject = $post_secure_array['post_subject'];
+    $post_body = $post_secure_array['post_body'];
+    $id = $post_secure_array['id'];
+    $poster = Post::loadById($id);
+    $poster->subject = $post_subject;
+    $poster->body = $post_body;
+    $return = $poster->save();
+    header('Location: index.php');  //перенаправляем на главную
+    if ($return) {
+        $message = "My congratulations. Your post's data has been edited.";
+    }
+    else {
+        $message = "Error. Your post's data hasn't been edited.";
+    }
+    echo "<script type='text/javascript'>alert('$message');</script>";
+
 
 }
 

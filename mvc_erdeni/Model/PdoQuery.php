@@ -47,6 +47,46 @@ namespace mvc_erdeni\Model {
             }
         }
 
+        public function insert_on_duplicate_key_update($tableName, $arrayData, $updatingData) : int {
+
+            try {
+                $pdo = SingletonDataBase::getInstance();
+                $sql = "INSERT INTO " . $tableName . " (";
+                $i = 0;
+                foreach ($arrayData as $key => $value) {
+                    if ($i > 0) {
+                        $sql .= ',';
+                    }
+                    $sql .= $key;
+                    $i++;
+                }
+                $sql .= ") VALUES (";
+                $i = 0;
+                foreach ($arrayData as $key => $value) {
+                    if ($i > 0) {
+                        $sql .= ',';
+                    }
+                    $sql .= ":" . $key;
+                    $i++;
+                }
+                $sql .= ") ON DUPLICATE KEY UPDATE ";
+                $i = 0;
+                foreach ($updatingData as $key => $value) {
+                    if ($i > 0) {
+                        $sql .= ',';
+                    }
+                    $sql .= ":" . $key;
+                    $i++;
+                }
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute($arrayData);
+                return $pdo->lastInsertId();
+            }
+            catch (\PDOException $pe) {
+                return -1;
+            }
+        }
+
         /** выполнить одиночный запрос
          * @param $statement
          * @return int

@@ -45,6 +45,7 @@ include("_cabinet_topmenu.php");   // меню внутри кабинета
         <textarea class="ckeditor" name="post_body" cols="50" rows="10" form="data">
             <?=htmlspecialchars_decode($element->body); ?>
         </textarea>
+        <input type="hidden" value="<?=$id;?>" form="data" name="id"/>
 
         <p><input type="submit" value="Edit post" form="data"></p>
     </form>

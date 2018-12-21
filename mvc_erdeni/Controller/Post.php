@@ -27,7 +27,7 @@ class Post
     public $body = null;
 
     const SUBJECT_MAX_LENGTH = 49;
-    const BODY_SHORT_LENGTH = 50;
+    const BODY_SHORT_LENGTH = 49;
 
     public function __construct() {
         // allocate your stuff
@@ -89,7 +89,6 @@ class Post
         $pdo = new PdoQuery();
         $header = mb_substr($this->subject, 0, self::SUBJECT_MAX_LENGTH, 'UTF-8');
         if (!$this->id) {       //если нет, такого поста в базе данных
-
             $lastId = $pdo->insert("posts", array(
                 "header" => $header,
                 "body" => $this->body,
@@ -102,7 +101,15 @@ class Post
             }
         }
         else {
-            $result = $pdo->exec("UPDATE posts SET header=".$header.",body=".$this->body." WHERE id = ".$this->id);
+            try {
+                $body = $this->body;
+                $id = $this->id;
+                $query = "UPDATE posts SET `header`= \"$header\",`body`= \"$body\" WHERE `id` = $id";
+                $result = $pdo->exec($query);
+            }
+            catch (\PDOException $pe) {
+                echo "error. " . $pe->getMessage();
+            }
             if ($result > 0) {
                 return true;
             }
