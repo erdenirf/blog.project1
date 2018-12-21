@@ -26,7 +26,8 @@ class Post
     public $subject = null;
     public $body = null;
 
-    const SUBJECT_MAX_LENGTH = 50;
+    const SUBJECT_MAX_LENGTH = 49;
+    const BODY_SHORT_LENGTH = 50;
 
     public function __construct() {
         // allocate your stuff
@@ -86,7 +87,7 @@ class Post
     public function save() : bool {
 
         $pdo = new PdoQuery();
-        $header = substr($this->subject, 0, self::SUBJECT_MAX_LENGTH);
+        $header = mb_substr($this->subject, 0, self::SUBJECT_MAX_LENGTH, 'UTF-8');
         if (!$this->id) {       //если нет, такого поста в базе данных
 
             $lastId = $pdo->insert("posts", array(
@@ -122,6 +123,13 @@ class Post
     public function getLogin() {
         return $this->login;
     }
+
+    public function getBodyShorted() : string {
+
+        return mb_substr(strip_tags(htmlspecialchars_decode($this->body)), 0, self::BODY_SHORT_LENGTH, "UTF-8");
+
+    }
+
     public function getFullUserName() : string
     {
         if (!($this->login)) {

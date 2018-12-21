@@ -30,7 +30,7 @@ use mvc_erdeni\Controller\Post;
     foreach (Post::AllPosts() as $element) {
         $id = $element->getId();
         echo "<div><p><a href=\"/index.php?page=fullpost&id=$id\">".$element->subject."</a>
-</p>".htmlspecialchars_decode($element->body)."</div>";
+</p>".$element->getBodyShorted()."</div>";
         $login = $element->getLogin();
         echo "<p>------- Date create: ".$element->getDateCreate()." ----- User: <a href=\"index.php?page=profile&user=$login\">".$element->getFullUserName()."</p>";
     }

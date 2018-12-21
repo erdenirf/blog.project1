@@ -34,7 +34,7 @@ use mvc_erdeni\Controller\{
     foreach (Post::allPostsOfUser($user) as $element) {
         $id = $element->getId();
         echo "<div><p><a href=\"/index.php?page=fullpost&id=$id\">".$element->subject."</a>
-</p>".htmlspecialchars_decode($element->body)."</div>";
+</p>".$element->getBodyShorted()."</div>";
         echo "<p>------- Date create: ".$element->getDateCreate()." ----- User: ".$element->getFullUserName()."</p>";
     }
     echo "<div>
