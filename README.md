@@ -1,3 +1,3 @@
 # blog.project1
-MVC homemade
+MVC homemade blog on PHP 7.0
 
